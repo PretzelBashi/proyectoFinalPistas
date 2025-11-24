@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import mx.uacj.juego_ra.ui.pantallas.PantallaInicio
 import mx.uacj.juego_ra.ui.pantallas.Principal
 
 @Composable
@@ -13,7 +14,7 @@ fun NavegadorPrincipal(modificador: Modifier = Modifier){
 
     NavHost(controlador_de_navegacion, startDestination = "OpcionNavegacionPantallaPrincipal"){
         composable("OpcionNavegacionPantallaPrincipal") {
-            Principal(controlador_de_navegacion, modificador)
+            PantallaInicio(controlador_de_navegacion, modificador)
         }
 
         composable("SelectorPantallaPista") {
