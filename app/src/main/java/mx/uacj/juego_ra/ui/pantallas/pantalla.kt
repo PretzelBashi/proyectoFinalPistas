@@ -142,7 +142,7 @@ fun PantallaInicio (
                     fontSize = 22.sp,
                     fontFamily = bebasneue,
 
-                )
+                    )
             }
 
             Image(
@@ -157,6 +157,4 @@ fun PantallaInicio (
         }
     }
 
-    }
-
-
+}

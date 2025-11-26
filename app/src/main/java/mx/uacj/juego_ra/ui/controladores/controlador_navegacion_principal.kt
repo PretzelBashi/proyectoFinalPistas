@@ -6,7 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import mx.uacj.juego_ra.ui.pantallas.PantallaInicio
+import mx.uacj.juego_ra.ui.pantallas.PistaEncontrada
 import mx.uacj.juego_ra.ui.pantallas.Principal
+import mx.uacj.juego_ra.ui.pantallas.TesoroEncontrado
 
 @Composable
 fun NavegadorPrincipal(modificador: Modifier = Modifier){
@@ -22,7 +24,15 @@ fun NavegadorPrincipal(modificador: Modifier = Modifier){
         }
 
         composable("SelectorPantallaPista") {
-            SeleccionarPantallaPista(controlador_de_navegacion, modificador)
+            Principal(controlador_de_navegacion, modificador)
+        }
+
+        composable("PantallaPistaSelector") {
+            PistaEncontrada(controlador_de_navegacion)
+        }
+
+        composable("PantallaTesoroEncontrado") {
+            TesoroEncontrado(controlador_de_navegacion)
         }
     }
 }

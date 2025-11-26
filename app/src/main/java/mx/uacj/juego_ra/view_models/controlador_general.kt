@@ -1,12 +1,10 @@
 package mx.uacj.juego_ra.view_models
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.sourceInformation
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import mx.uacj.juego_ra.modelos.Pista
 import mx.uacj.juego_ra.repositorios.RepositorioInformacionGeneral
-import mx.uacj.juego_ra.repositorios.estaticos.RepositorioPruebas.pistas
 import javax.inject.Inject
 
 @HiltViewModel

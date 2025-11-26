@@ -28,12 +28,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import mx.uacj.juego_ra.R
 import mx.uacj.juego_ra.modelos.Pista
+import mx.uacj.juego_ra.ui.pantallas.PistaEncontrada
 import mx.uacj.juego_ra.ui.theme.Juego_raTheme
+import mx.uacj.juego_ra.view_models.ControladorGeneral
 
 @Composable
-fun PistaSeleccionar(pista: Pista, temperatura: Int){
+fun PistaSeleccionar(pista: Pista, temperatura: Int, navegador: NavHostController,controlador_general: ControladorGeneral = hiltViewModel()){
     var pista_encontrada by remember { mutableStateOf(false) }
     Row(
         modifier = Modifier
@@ -42,8 +46,13 @@ fun PistaSeleccionar(pista: Pista, temperatura: Int){
             .border(1.dp, Color.Gray)
             .padding(top = 14.dp, start = 10.dp, end = 10.dp, bottom = 14.dp)
             .clickable {
-                if(pista_encontrada){
-                    //Aqui poner el codigo para encontrar pista
+                if(pista.completada == 1 || temperatura == 4 || temperatura == 6 || temperatura == 7) {
+                    if (temperatura == 6 || temperatura == 7){
+                        navegador.navigate("PantallaTesoroEncontrado")
+                    } else {
+                        navegador.navigate("PantallaPistaSelector")
+                    }
+                    controlador_general.seleccionar_pista(pista)
                 }
             },
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -53,23 +62,27 @@ fun PistaSeleccionar(pista: Pista, temperatura: Int){
             Text(pista.nombre, style = TextStyle(fontSize = 26.sp, fontWeight = FontWeight.Bold), modifier = Modifier.padding(bottom = 6.dp))
 
             if (pista.completada == 1) {
-                Text("Ver descripcion completa", style = TextStyle(fontSize = 15.sp))
+                if (temperatura == 7){
+                    Text("Tesoro encontrado", style = TextStyle(fontSize = 15.sp))
+                } else {
+                    Text("Ver descripcion completa", style = TextStyle(fontSize = 15.sp))
+                }
             } else {
                 when (temperatura) {
                     0 -> Text("Bloqueada, sigue investigando", style = TextStyle(fontSize = 15.sp))
-                    1 -> Text("Estas un poco lejos...", style = TextStyle(fontSize = 15.sp))
-                    2 -> Text("Sientes que la pista esta cerca...", style = TextStyle(fontSize = 15.sp))
-                    3 -> Text("Nunca habias estado mas cerca...", style = TextStyle(fontSize = 15.sp))
-                    else -> {
-                        Text("Puedes ver un sobre cerca de ti...")
-                        pista_encontrada = true
+                    1 -> Text("Estas un poco cerca...", style = TextStyle(fontSize = 15.sp))
+                    2 -> Text("Algo te dice que estas bastante cerca...", style = TextStyle(fontSize = 15.sp))
+                    3 -> Text("Estas en el lugar correcto...", style = TextStyle(fontSize = 15.sp))
+                    4 -> {
+                        Text("Puedes ver un sobre frente a ti...")
                     }
+                    5 -> Text("Aqui no hay nada", style = TextStyle(fontSize = 15.sp))
+                    6 -> Text("El tesoro esta frente a tus ojos", style = TextStyle(fontSize = 15.sp))
                 }
 
             }
         }
 
-        // Imagen a la derecha
         Image(
             painter = painterResource(id = if (pista.completada == 1) R.drawable.candado_abierto else R.drawable.candado_cerrado),
             contentDescription = "Candado",
