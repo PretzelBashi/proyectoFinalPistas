@@ -40,8 +40,8 @@ fun PantallaInicio(navegador: NavHostController,
     Column( horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = modificador
-        .background(Color.LightGray)
-        .fillMaxSize())
+            .background(Color.LightGray)
+            .fillMaxSize())
     {
         Column(horizontalAlignment = Alignment.CenterHorizontally,
             modifier = modificador.background(Color.Gray)) {

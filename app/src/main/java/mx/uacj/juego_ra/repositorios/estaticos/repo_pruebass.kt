@@ -9,7 +9,8 @@ import mx.uacj.juego_ra.modelos.InformacionInteractiva
 import mx.uacj.juego_ra.modelos.Pista
 
 object RepositorioPruebas{
-    var pistas = listOf(Pista(
+    var pistas = listOf(
+        Pista(
             nombre = "pista_1",
             ubicacion = Location("proveedor").apply {
                 latitude = 31.7156044
@@ -17,8 +18,9 @@ object RepositorioPruebas{
             },
             cuerpo = Informacion(
                 texto = "Prueba de texto para comprobar esto pista 1",
-                imagen = R.drawable.imagen_1
-            )
+                imagen = null
+            ),
+            completada = 1
         ),
         Pista(
             nombre = "pista_2",
@@ -29,7 +31,8 @@ object RepositorioPruebas{
             cuerpo = Informacion(
                 texto = "Prueba de texto para comprobar esto pista 2",
                 imagen = null
-            )
+            ),
+            completada = 0
         ),
         Pista(
             nombre = "pista_3",
@@ -40,27 +43,8 @@ object RepositorioPruebas{
             cuerpo = Informacion(
                 texto = "Prueba de texto para comprobar esto pista 3",
                 imagen = null
-            )
+            ),
+            completada = 0
         ),
-
-        Pista(
-            nombre = "pista_4",
-            ubicacion = Location("proveedor"),
-            distancia_maxima = 15.0f,
-            cuerpo = InformacionInteractiva(
-                texto = "Esto es una prueba de pista tipo interactiva",
-                lista_de_botones = listOf(
-                    Boton(
-                            texto = "Ir a pantalla 1",
-                            direccion = "pista_1"
-                        ),
-                    Boton(
-                        texto = "Ir a pantalla dos",
-                        direccion = "pista_2"
-                    )
-                )
-            )
-        ),
-
     )
 }
