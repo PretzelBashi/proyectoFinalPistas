@@ -16,12 +16,12 @@ fun InformacionInteractivaVista(navegador: NavHostController, informacion_intera
     Column {
         Text("${informacion_interactiva.texto}")
 
-        for(boton in informacion_interactiva.lista_de_botones){
+        /*for(boton in informacion_interactiva.lista_de_botones){
 
             Text("${boton.texto}", modifier = Modifier.clickable {
                 controlador_general.seleccionar_pista(boton.direccion)
                 navegador.navigate("SelectorPantallaPista")
             })
-        }
+        }*/
     }
 }

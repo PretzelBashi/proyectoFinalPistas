@@ -20,14 +20,14 @@ class ControladorGeneral @Inject constructor(
         infomracion_general.pista_seleccionada.value = pista
     }
 
-    fun seleccionar_pista(pista_id: String){
+    /*fun seleccionar_pista(pista_id: String){
         for(pista in pistas){
             if(pista.nombre == pista_id){
                 infomracion_general.pista_seleccionada.value = pista
                 break
             }
         }
-    }
+    }*/
 
 
     fun el_usuario_ha_identificado_la_pista(pista: Pista){
