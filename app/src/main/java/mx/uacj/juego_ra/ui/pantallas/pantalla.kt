@@ -1,7 +1,11 @@
 package mx.uacj.juego_ra.ui.pantallas
 
 import android.icu.text.ListFormatter.Width
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -14,12 +18,17 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +42,7 @@ import mx.uacj.juego_ra.R
 import mx.uacj.juego_ra.view_models.ControladorGeneral
 import mx.uacj.juego_ra.view_models.GestorUbicacion
 
+
 @Composable
 fun PantallaInicio (
     navegador: NavHostController,
@@ -45,24 +55,52 @@ fun PantallaInicio (
     val mainstay = FontFamily(
         Font(R.font.mainstay, FontWeight.Normal)
     )
+    val bebasneue = FontFamily(
+        Font(R.font.bebasneue, FontWeight.Normal)
+    )
+    val belgianoserif = FontFamily(
+        Font(R.font.belgianoserif, FontWeight.Normal)
+    )
+
+    Image(
+        painter = painterResource(R.drawable.huellas),
+        contentDescription = "Fondo",
+        contentScale = ContentScale.FillBounds,
+        modifier = modificador
+    )
+
+
 
     Column( horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         modifier = modificador
-            .background(Color.LightGray)
-            .fillMaxSize())
+            .fillMaxSize()
+            .background(Color.hsl(.167f, .1f, .0f,.6f)))
     {
+        Column( horizontalAlignment = Alignment.End,
+            modifier = modificador.fillMaxWidth(.9f)
+                .fillMaxHeight(.06f)) {
+            Image(
+                painter = painterResource(R.drawable.tuerca),
+                contentDescription = "Una lupa.",
+                contentScale = ContentScale.FillHeight,
+                colorFilter = ColorFilter.tint(Color.Red),
+            )
+        }
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.SpaceEvenly,
             modifier = modificador
-                .fillMaxSize(0.9f),
+                .fillMaxWidth(.9f)
+                .fillMaxHeight(.8f)
+                .padding(top = 70.dp)
         ) {
 
             Text(
-                "Huellas Doradas",
-                modifier = Modifier.padding(15.dp),
-                color = Color.Red,
+                "Huellas de Oro",
+                modifier = Modifier.padding(vertical = 15.dp),
+                color = Color.White,
                 fontSize = 40.sp,
                 fontWeight = FontWeight.Normal,
                 fontFamily = mainstay
@@ -70,24 +108,22 @@ fun PantallaInicio (
 
             )
             Text(
-                "Ha ocurrido un gran robo en la joyeria de la " +
+                text = "Ha ocurrido un gran robo en la joyeria de la " +
                         "ciudad y es tu trabajo como detective analizar" +
-                        "los hechos y encontrar a los responsables",
-                modifier = modificador.padding(top = 15.dp),
+                        "los hechos y encontrar a los responsables.\n\n" +
+                        "Revisa las pistas y notas, y revela el misterio detrás del crimen",
                 textAlign = TextAlign.Center,
-                color = Color.DarkGray
-            )
-            Text(
-                "Revisa las pistas y notas, y revela el misterio detrás del crimen",
-                modifier = modificador.padding(bottom = 15.dp),
-                textAlign = TextAlign.Center,
-                color = Color.DarkGray
-
+                color = Color.White,
+                fontFamily = belgianoserif,
+                fontSize = 16.sp,
+                fontWeight = FontWeight(600)
             )
             Button(
                 shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .fillMaxWidth(0.9f),
+                    .fillMaxWidth(0.9f)
+                    .fillMaxHeight(0.3f)
+                    .padding(vertical = 10.dp),
                 colors = ButtonColors(
                     containerColor = Color.Red,
                     contentColor = Color.White,
@@ -103,10 +139,20 @@ fun PantallaInicio (
             ) {
                 Text(
                     "Empezar",
-                    fontSize = 18.sp,
-                    modifier = modificador
+                    fontSize = 22.sp,
+                    fontFamily = bebasneue,
+
                 )
             }
+
+            Image(
+                painter = painterResource(R.drawable.lupa),
+                contentDescription = "Una lupa.",
+                contentScale = ContentScale.FillHeight,
+                colorFilter = ColorFilter.tint(Color.White),
+                modifier = Modifier
+                    .fillMaxSize(0.2f)
+            )
 
         }
     }
