@@ -16,3 +16,6 @@ object OpcionNavegacionPantallaPistaAgitable
 
 @Serializable
 object OpcionNavegacionPantallaPistaCamara
+
+@Serializable
+object  OpcionNavegacionPantallaPistas

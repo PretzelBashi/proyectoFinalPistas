@@ -17,6 +17,10 @@ fun NavegadorPrincipal(modificador: Modifier = Modifier){
             PantallaInicio(controlador_de_navegacion, modificador)
         }
 
+        composable("OpcionNavegacionPantallaPistas") {
+            Principal(controlador_de_navegacion, modificador)
+        }
+
         composable("SelectorPantallaPista") {
             SeleccionarPantallaPista(controlador_de_navegacion, modificador)
         }
