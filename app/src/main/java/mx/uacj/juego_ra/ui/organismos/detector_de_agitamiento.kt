@@ -24,7 +24,7 @@ fun DetectorAgitamiento(modificador: Modifier = Modifier,
 ){
     val contexto = LocalContext.current
     var contador_agitadas by remember { mutableStateOf(0) }
-    val sensibilidad = 10
+    val sensibilidad = 100
 
     DisposableEffect(Unit) {
         val gestor_sensor = contexto.getSystemService(Context.SENSOR_SERVICE) as SensorManager

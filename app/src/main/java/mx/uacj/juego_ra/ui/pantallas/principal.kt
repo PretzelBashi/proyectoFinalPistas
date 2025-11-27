@@ -1,6 +1,8 @@
 package mx.uacj.juego_ra.ui.pantallas
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -12,12 +14,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import mx.uacj.juego_ra.R
 import mx.uacj.juego_ra.repositorios.estaticos.RepositoriosPistas
 import mx.uacj.juego_ra.ui.atomos.PistaSeleccionar
 import mx.uacj.juego_ra.ui.organismos.DetectorAgitamiento
@@ -34,21 +40,26 @@ fun Principal(
 
     var mostrar_pantalla_generica by remember { mutableStateOf(true) }
     var pista_actual by remember { mutableStateOf(0)}
-    var dificultad by remember { mutableStateOf(2) }
+    var dificultad by remember { mutableStateOf(0) }
 
     var mostrar_informacion_relacionada_con_las_agitadas by remember { mutableStateOf(false) }
     var RepositorioDificultad by remember { mutableStateOf(RepositoriosPistas)}
     var ubicacion = gestor_ubicacion.ubicacion_actual
 
-    Column(modificador) {
-        DetectorAgitamiento(meta_de_agitadas = 20, al_llegar_a_la_meta = {
-            mostrar_informacion_relacionada_con_las_agitadas = true
-        })
-        if(mostrar_informacion_relacionada_con_las_agitadas){
-            Text("Ya me sarandeastes demasiado")
-        }
+    val mainstay = FontFamily(
+        Font(R.font.mainstay, FontWeight.Normal)
+    )
+    val bebasneue = FontFamily(
+        Font(R.font.bebasneue, FontWeight.Normal)
+    )
+    val belgianoserif = FontFamily(
+        Font(R.font.belgianoserif, FontWeight.Normal)
+    )
+
+    Column(modificador.background(Color((0xFFe3e3e3))).fillMaxSize()) {
+
         /*Text("Ubicacion actual: ${ubicacion.value}")*/
-        Text("Selecciona una de las pistas", style = TextStyle(fontSize = 18.sp, color = Color.Red, fontStyle = FontStyle.Italic, textAlign = TextAlign.Center),
+        Text("Selecciona una de las pistas", style = TextStyle(fontSize = 20.sp,fontFamily = belgianoserif, color = Color.Red, fontStyle = FontStyle.Italic, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold),
             modifier = Modifier
                 .padding(top = 70.dp, bottom = 40.dp)
                 .fillMaxWidth())
@@ -85,17 +96,14 @@ Text("${pista_actual}")*/
 
                     if (pista_actual == contador){
                         if(nivel_de_distancia > 75){
-                            Text("Frio")
                             temperatura = 1
                         }
 
                         else if (nivel_de_distancia > 50){
-                            Text("Medio")
                             temperatura = 2
                         }
 
                         else if(nivel_de_distancia > 25){
-                            Text("Caliente")
                             temperatura = 3
                         }
                         /*else if(nivel_de_distancia < 20 && !mostrar_pista_cercana){
@@ -106,7 +114,6 @@ Text("${pista_actual}")*/
                             }
                         }*/
                         else if(distancia_a_la_pista < pista.distancia_minima) {
-                            Text("Aqui es")
                             temperatura = 4
 
                             if (RepositoriosPistas.nivelesPistas[dificultad].count() == contador+1 && pista.completada == 0){

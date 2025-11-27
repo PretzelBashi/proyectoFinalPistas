@@ -109,8 +109,8 @@ fun PantallaInicio (
             )
             Text(
                 text = "Ha ocurrido un gran robo en la joyeria de la " +
-                        "ciudad y es tu trabajo como detective analizar" +
-                        "los hechos y encontrar a los responsables.\n\n" +
+                        "ciudad, parece que los culpables se ocultaron dentro " +
+                        "de la universidad.\n\n" +
                         "Revisa las pistas y notas, y revela el misterio detrás del crimen",
                 textAlign = TextAlign.Center,
                 color = Color.White,
